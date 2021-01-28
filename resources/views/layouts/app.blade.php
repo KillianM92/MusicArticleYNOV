@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'YNOVProject') }}</title>
+    <title>{{ config('app.name', 'Projet_Tech_Web') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -35,14 +35,6 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="/posts/create">Poster un article</a>
-                            </li>
-                        </ul>
-                    </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -52,13 +44,16 @@
                             <a class="nav-link" href="/">Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/posts">Articles</a>
+                            <a class="nav-link" href="/posts">Avis</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/email">Envoie de mail</a>
+                            <a class="nav-link" href="/email">Envoi d'un mail</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/about">A propos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/products">Jeux Vidéos</a>
                         </li>
 
                         @guest
@@ -74,9 +69,18 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('profil') }}">Profil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/posts/create">Poster un avis</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('cart.index') }}">Panier <span class="badge badge-pill badge-dark">{{ Cart::count() }}</span></a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->prenom . ' ' . Auth::user()->name}}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -85,7 +89,6 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
@@ -103,5 +106,10 @@
             </main>
         </div>
     </div>
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success')}}
+        </div>
+    @endif
 </body>
 </html>
