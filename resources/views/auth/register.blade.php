@@ -13,20 +13,6 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="prenom" class="col-md-4 col-form-label text-md-right">{{ __('Prénom') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('prenom') is-invalid @enderror" name="prenom" value="{{ old('prenom') }}" required autocomplete="prenom" autofocus>
-
-                                @error('prenom')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div> 
-
-                        <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
@@ -47,34 +33,6 @@
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="ddn" class="col-md-4 col-form-label text-md-right">{{ __('Date de naissance') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="ddn" type="date" class="form-control @error('ddn') is-invalid @enderror" name="ddn" value="{{ old('ddn') }}" required autocomplete="ddn">
-
-                                @error('ddn')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="solde" class="col-md-4 col-form-label text-md-right">{{ __('Solde en €') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="solde" type="int" class="form-control @error('solde') is-invalid @enderror" name="solde" value="{{ old('solde') }}" required autocomplete="solde">
-
-                                @error('solde')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -117,4 +75,7 @@
         </div>
     </div>
 </div>
+
+
+
 @endsection

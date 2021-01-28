@@ -17,41 +17,31 @@ Route::get('/', function () {
      return view('welcome');
 }); */
 
-/* routes pour les jeux vidéos */
-Route::get('/products', 'App\Http\Controllers\ProductController@index')->name('products.index');
-Route::get('/products/{id}', 'App\Http\Controllers\ProductController@show')->name('products.show');
+/* routage pour les articles */
+Route::get('/shop/{slug}', 'App\Http\Cotrollers\ProductController@show')->name('products.show');
+Route::get('/shop', 'App\Http\Cotrollers\ProductController@index')->name('products.index');
 
-// route pour la barre de recherche
-
-Route::get('/search', 'App\Http\Controllers\ProductController@search')->name('products.search');
-
-//Route de la page d'accueil
 
 Route::get('/' , 'App\Http\Controllers\PagesController@index');
-
-//Routes pour les liens de la navbar
-
 Route::get('/about' , 'App\Http\Controllers\PagesController@about');
 Route::get('/services' , 'App\Http\Controllers\PagesController@services');
-Route::get('/profil','App\Http\Controllers\UserController@profil');
+Route::get('/profil' , 'App\Http\Controllers\PagesController@profil');
+Route::get('/products' , 'App\Http\Controllers\PagesController@products');
 Route::get('/email', 'App\Http\Controllers\EmailController@create');
 Route::post('/email', 'App\Http\Controllers\EmailController@sendEmail')->name('send.email');
 
-// Routes pour le panier
-
-Route::get('/panier', 'App\Http\Controllers\CartController@index')->name('cart.index');
-Route::post('/panier/ajouter', 'App\Http\Controllers\CartController@store')->name('cart.store');
-Route::delete('/panier/{rowId}', 'App\Http\Controllers\CartController@destroy')->name('cart.destroy');
-
-Route::get('/videpanier', function() {
-    Cart::destroy();
+/*Route::get('/about', function() {
+    return view('pages.about');
+});*/
+Route::get('/users/{id}', function($id) {
+    return 'This is a user' . $id;
 });
 
-// Routes pour l'authentification
 
 Auth::routes();
 
-// Others routes
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('posts', 'App\Http\Controllers\PostsController');
+
+
+
